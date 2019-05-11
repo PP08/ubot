@@ -124,3 +124,7 @@ class TestUBotDoingMultipleActions(unittest.TestCase):
         self.assertEqual(self.uBot.get_direction(), 'East')
         self.assertEqual(self.uBot.x, -99)
         self.assertEqual(self.uBot.y, 88)
+
+
+if __name__ == '__main__':
+    unittest.main()
