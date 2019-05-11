@@ -19,6 +19,10 @@ class UBot:
         self.y = y
         self.angle = angle
 
+    def get_direction(self):
+        """return UBot direction"""
+        return self.convert_angle_to_direction(self.angle)
+
     @staticmethod
     def convert_angle_to_direction(angle):
         """convert angle to direction"""
