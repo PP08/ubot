@@ -88,3 +88,39 @@ class TestUBotParsingCommand(unittest.TestCase):
     def test_uBot_parsing_complex_command_3(self):
         self.assertListEqual(UBot.parse_command_to_actions('W55555RW555555W444444W1'),
                              ['W55555', 'R', 'W555555', 'W444444', 'W1'])
+
+
+class TestUBotDoingMultipleActions(unittest.TestCase):
+
+    def setUp(self):
+        self.uBot = UBot()
+
+    def test_uBot_doing_multiple_rotating_actions(self):
+        self.uBot.execute_command('RLLRRR')
+        self.assertEqual(self.uBot.get_direction(), 'South')
+        self.assertEqual(self.uBot.x, 0)
+        self.assertEqual(self.uBot.y, 0)
+
+    def test_uBot_doing_multiple_rotating_and_walking_actions(self):
+        self.uBot.execute_command('RRW55LW100R')
+        self.assertEqual(self.uBot.get_direction(), 'South')
+        self.assertEqual(self.uBot.x, 100)
+        self.assertEqual(self.uBot.y, -55)
+
+    def test_uBot_doing_complex_multiple_action_1(self):
+        self.uBot.execute_command('RRW11RLLW19RRW12LW1')
+        self.assertEqual(self.uBot.get_direction(), 'South')
+        self.assertEqual(self.uBot.x, 7)
+        self.assertEqual(self.uBot.y, -12)
+
+    def test_uBot_doing_complex_multiple_action_2(self):
+        self.uBot.execute_command('RRW11RLLW19RRW12LW1')
+        self.assertEqual(self.uBot.get_direction(), 'South')
+        self.assertEqual(self.uBot.x, 7)
+        self.assertEqual(self.uBot.y, -12)
+
+    def test_uBot_doing_complex_multiple_action_3(self):
+        self.uBot.execute_command('LLLLLW99RRRRRW88LLLRL')
+        self.assertEqual(self.uBot.get_direction(), 'East')
+        self.assertEqual(self.uBot.x, -99)
+        self.assertEqual(self.uBot.y, 88)
