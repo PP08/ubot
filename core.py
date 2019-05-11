@@ -20,6 +20,12 @@ class UBot:
         self.y = y
         self.angle = angle
 
+    @staticmethod
+    def parse_command_to_actions(moving_command):
+        """parse command to list of single step"""
+        regex = re.compile(r'[A-Z][0-9]*')
+        return re.findall(regex, moving_command)
+
     def move(self, action):
         """do action: turning or walking"""
         if action == Action.TURN_LEFT.value:
