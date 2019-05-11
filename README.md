@@ -1,2 +1,5 @@
-# ubot
-UBot for applying Python developer
+# UBOT
+For applying Python developer
+---
+Requirements:
+- Python version >= 3.6
