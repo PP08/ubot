@@ -24,3 +24,17 @@ class TestUBotConvertAngleToDirection(unittest.TestCase):
 
     def test_convert_unidentified_direction(self):
         self.assertNotIn(UBot.convert_angle_to_direction(60), ['East', 'West', 'North', 'South'])
+
+
+class TestUBotInitialSetup(unittest.TestCase):
+    def setUp(self):
+        self.uBot = UBot()
+
+    def test_uBot_initial_direction(self):
+        self.assertEqual(self.uBot.get_direction(), 'North')
+
+    def test_uBot_initial_x_coordinate(self):
+        self.assertEqual(self.uBot.x, 0)
+
+    def test_uBot_initial_y_coordinate(self):
+        self.assertEqual(self.uBot.y, 0)
