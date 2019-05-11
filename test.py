@@ -76,3 +76,15 @@ class TestUBotParsingCommand(unittest.TestCase):
 
     def test_uBot_parsing_turning_and_walking_command(self):
         self.assertListEqual(UBot.parse_command_to_actions('RRW55LW100R'), ['R', 'R', 'W55', 'L', 'W100', 'R'])
+
+    def test_uBot_parsing_complex_command_1(self):
+        self.assertListEqual(UBot.parse_command_to_actions('RRW11RLLW19RRW12LW1'),
+                             ['R', 'R', 'W11', 'R', 'L', 'L', 'W19', 'R', 'R', 'W12', 'L', 'W1'])
+
+    def test_uBot_parsing_complex_command_2(self):
+        self.assertListEqual(UBot.parse_command_to_actions('LLW100W50RW200W10'),
+                             ['L', 'L', 'W100', 'W50', 'R', 'W200', 'W10'])
+
+    def test_uBot_parsing_complex_command_3(self):
+        self.assertListEqual(UBot.parse_command_to_actions('W55555RW555555W444444W1'),
+                             ['W55555', 'R', 'W555555', 'W444444', 'W1'])
