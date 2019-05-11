@@ -19,6 +19,31 @@ class UBot:
         self.y = y
         self.angle = angle
 
+    def move(self, action):
+        """do action: turning or walking"""
+        if action == Action.TURN_LEFT.value:
+            self.angle += 90
+        elif action == Action.TURN_RIGHT.value:
+            self.angle -= 90
+        elif Action.WALK.value in action:
+            steps = int(action[1:])
+            _rad_angle = math.radians(self.angle)
+            _sin = math.sin(_rad_angle)
+            _cos = math.cos(_rad_angle)
+            if -1 < _sin < 1:
+                self.x += int(_cos * steps)
+            elif -1 < _cos < 1:
+                self.y += int(_sin * steps)
+            else:
+                print('something went wrong. Current action: {}, bot-angle: {}, bot-x: {}, bot-y: {}'.format(action,
+                                                                                                             self.angle,
+                                                                                                             self.x,
+                                                                                                             self.y))
+                exit()
+        else:
+            print("UBot cannot complete the command due the bot cannot understand the {} action".format(action))
+            exit()
+
     def get_direction(self):
         """return UBot direction"""
         return self.convert_angle_to_direction(self.angle)
