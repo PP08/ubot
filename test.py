@@ -38,3 +38,32 @@ class TestUBotInitialSetup(unittest.TestCase):
 
     def test_uBot_initial_y_coordinate(self):
         self.assertEqual(self.uBot.y, 0)
+
+
+class TestUBotMovingFunction(unittest.TestCase):
+    def setUp(self):
+        self.uBot = UBot()
+
+    def test_uBot_turn_left(self):
+        self.uBot.move('L')
+        self.assertEqual(self.uBot.get_direction(), 'West')
+        self.assertEqual(self.uBot.x, 0)
+        self.assertEqual(self.uBot.y, 0)
+
+    def test_uBot_turn_right(self):
+        self.uBot.move('R')
+        self.assertEqual(self.uBot.get_direction(), 'East')
+        self.assertEqual(self.uBot.x, 0)
+        self.assertEqual(self.uBot.y, 0)
+
+    def test_uBot_walking_one_step(self):
+        self.uBot.move('W1')
+        self.assertEqual(self.uBot.get_direction(), 'North')
+        self.assertEqual(self.uBot.x, 0)
+        self.assertEqual(self.uBot.y, 1)
+
+    def test_uBot_moving_multiple_step(self):
+        self.uBot.move('W5')
+        self.assertEqual(self.uBot.get_direction(), 'North')
+        self.assertEqual(self.uBot.x, 0)
+        self.assertEqual(self.uBot.y, 5)
