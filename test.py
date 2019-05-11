@@ -67,3 +67,12 @@ class TestUBotMovingFunction(unittest.TestCase):
         self.assertEqual(self.uBot.get_direction(), 'North')
         self.assertEqual(self.uBot.x, 0)
         self.assertEqual(self.uBot.y, 5)
+
+
+class TestUBotParsingCommand(unittest.TestCase):
+
+    def test_uBot_parsing_turning_command(self):
+        self.assertListEqual(UBot.parse_command_to_actions('RLLRRR'), ['R', 'L', 'L', 'R', 'R', 'R'])
+
+    def test_uBot_parsing_turning_and_walking_command(self):
+        self.assertListEqual(UBot.parse_command_to_actions('RRW55LW100R'), ['R', 'R', 'W55', 'L', 'W100', 'R'])
