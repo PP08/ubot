@@ -1,5 +1,6 @@
 import math
 import re
+import sys
 from enum import Enum
 
 
@@ -77,3 +78,18 @@ class UBot:
         elif _sin == -1:
             return 'South'
         return 'Unidentified (angle: {})'.format(angle)
+
+    def __repr__(self):
+        """UBot object representation"""
+        return 'X: {} Y: {} Direction: {}'.format(self.x, self.y, self.get_direction())
+
+
+if __name__ == '__main__':
+
+    if len(sys.argv) < 2:
+        print('Missing command for the bot')
+        exit()
+    command = sys.argv[1].rstrip().lstrip().upper()
+    uBot = UBot()
+    uBot.execute_command(command)
+    print(uBot.__repr__())
