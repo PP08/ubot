@@ -20,6 +20,12 @@ class UBot:
         self.y = y
         self.angle = angle
 
+    def execute_command(self, moving_command):
+        """execute moving command"""
+        actions = self.parse_command_to_actions(moving_command)
+        for action in actions:
+            self.move(action)
+
     @staticmethod
     def parse_command_to_actions(moving_command):
         """parse command to list of single step"""
