@@ -1,4 +1,5 @@
 import math
+import re
 from enum import Enum
 
 
@@ -25,7 +26,7 @@ class UBot:
             self.angle += 90
         elif action == Action.TURN_RIGHT.value:
             self.angle -= 90
-        elif Action.WALK.value in action:
+        elif re.compile(r'^W[0-9]+$').match(action):
             steps = int(action[1:])
             _rad_angle = math.radians(self.angle)
             _sin = math.sin(_rad_angle)
